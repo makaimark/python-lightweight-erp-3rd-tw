@@ -87,7 +87,8 @@ def print_menu(title, list_options, exit_message):
     print(title)
     for i in list_options:
         print("("+counter+")" + i)
-    print(exit_message)
+        counter += 1
+    print("(0)" + exit_message)
 
     pass
 
