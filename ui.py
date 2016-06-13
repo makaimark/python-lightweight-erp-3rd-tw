@@ -1,3 +1,8 @@
+table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
+["jH34Ju", "Age of Mythology", "Ensemble Studios", "40", "4"],
+["tH34Ju", "Age of Empires II: The Conquerors", "Ensemble Studios", "30", "3"]]
+
+title_list = ["id", "name", "kiado", "randomnum1", "random1"]
 
 
 # This function needs to print outputs like this:
@@ -12,10 +17,44 @@
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
 def print_table(table, title_list):
+    max_len_list = 0
+    max_len_element = [0, 0, 0, 0, 0, 0]
+    counter = 0
+    formatted_string = ""
+    for i in table:
+        counter = 0
+        for j in i:
+            if len(j) > max_len_element[counter] or max_len_element[counter] < len(title_list[counter]):
+                if len(j) > len(title_list[counter]):
+                    max_len_element[counter] = len(j)
+                else:
+                    max_len_element[counter] = len(title_list[counter])
+                counter += 1
 
-    # your code
+    max_len_list = sum(max_len_element) + 20    # 10 | and 10 spaces
+
+    counter = 0
+    print("-" * max_len_list)
+
+    for i in title_list:
+        formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(i)
+        counter += 1
+    print(formatted_string)
+    print("-" * max_len_list)
+
+    formatted_string = ""
+    for i in table:
+        counter = 0
+        for j in i:
+            formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(j)
+            counter += 1
+        print(formatted_string)
+        print("-" * max_len_list)
+        formatted_string = ""
 
     pass
+
+print_table(table, title_list)
 
 
 # This function needs to print result of the special functions
