@@ -1,8 +1,8 @@
-table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
+'''table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
 ["jH34Ju", "Age of Mythology", "Ensemble Studios", "40", "4"],
 ["tH34Ju", "Age of Empires II: The Conquerors", "Ensemble Studios", "30", "3"]]
 
-title_list = ["id", "name", "kiado", "randomnum1", "random1"]
+title_list = ["id", "name", "kiado", "randomnum1", "random1"]'''
 
 
 # This function needs to print outputs like this:
@@ -54,7 +54,7 @@ def print_table(table, title_list):
 
     pass
 
-print_table(table, title_list)
+# print_table(table, title_list)
 
 
 # This function needs to print result of the special functions
@@ -63,7 +63,7 @@ print_table(table, title_list)
 # @label: string - label of the result
 def print_result(result, label):
 
-    # your code
+    print(label + ":" + result)
 
     pass
 
