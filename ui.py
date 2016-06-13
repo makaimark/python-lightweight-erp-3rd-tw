@@ -101,7 +101,7 @@ def print_menu(title, list_options, exit_message):
 def get_inputs(list_labels, title):
     inputs = []
 
-    # your code
+    inputs = input(list_labels)
 
     return inputs
 
