@@ -1,8 +1,8 @@
-'''table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
+table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
 ["jH34Ju", "Age of Mythology", "Ensemble Studios", "40", "4"],
 ["tH34Ju", "Age of Empires II: The Conquerors", "Ensemble Studios", "30", "3"]]
 
-title_list = ["id", "name", "kiado", "randomnum1", "random1"]'''
+title_list = ["id", "name", "kiado", "randomnum1", "random1"]
 
 
 # This function needs to print outputs like this:
@@ -31,13 +31,16 @@ def print_table(table, title_list):
                     max_len_element[counter] = len(title_list[counter])
                 counter += 1
 
-    max_len_list = sum(max_len_element) + 20    # 10 | and 10 spaces
+    max_len_list = sum(max_len_element) + 16    # 10 | and 10 spaces
 
     counter = 0
     print("-" * max_len_list)
 
     for i in title_list:
-        formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(i)
+        if counter == 4:
+            formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(i)
+        else:
+            formatted_string = formatted_string + ("| {:^%d} " % max_len_element[counter]).format(i)
         counter += 1
     print(formatted_string)
     print("-" * max_len_list)
@@ -46,7 +49,10 @@ def print_table(table, title_list):
     for i in table:
         counter = 0
         for j in i:
-            formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(j)
+            if counter == 4:
+                formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(j)
+            else:
+                formatted_string = formatted_string + ("| {:^%d} " % max_len_element[counter]).format(j)
             counter += 1
         print(formatted_string)
         print("-" * max_len_list)
@@ -54,7 +60,7 @@ def print_table(table, title_list):
 
     pass
 
-# print_table(table, title_list)
+print_table(table, title_list)
 
 
 # This function needs to print result of the special functions
@@ -63,7 +69,8 @@ def print_table(table, title_list):
 # @label: string - label of the result
 def print_result(result, label):
 
-    print(label + ":" + result)
+    if result is list:
+        print(label + ":" + result)
 
     pass
 
