@@ -58,16 +58,12 @@ def common_remove(table, id_):
 
 
 def common_update(table, title_list):
-    old_list = []
     new_line = []
     id_ = ui.get_inputs(["Give me an ID:"], "")[0]
     new_line.append(id_[0])
-    for i in range(len(table[0])):
-        # title_list[0] = title_list[i]
-        old_list.append(ui.get_inputs(title_list, "Update the information"))
-        new_line.append(old_list[i][0])
-        return table
-    for i in range(len(table[0])):
-        if table[i][0] == id_[0]:
+    new_line += ui.get_inputs(title_list, "Update the information")
+    for i in range(len(table)):
+        if table[i][0] == id_:
             table[i] = new_line
+    # ui.print_error_message("This ID doesn't exist.")
     return table
