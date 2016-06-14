@@ -19,54 +19,12 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 
 table = data_manager.get_table_from_file(current_file_path + "/customers.csv")
 
-# start this module by a module menu like the main menu
-# user need to go back to the main menu from here
-# we need to reach the default and the special functions of this module from the module menu
-#
-
-
-def start_module():
-    options = ["1. Show items",
-               "2. Add items",
-               "3. Remove items",
-               "4. Update items",
-               "5. Get longest name id",
-               "6. Get subscribed emails",
-               "0. Back to the main menu"]
-
-    while True:
-        # print(options)
-        ui.print_menu(list_options, exit_message, options)
-        inputs = ui.get_inputs(["Please enter a number: "], "")
-        # inputs = input("Please enter a number:")
-        option = inputs[0]
-        table = data_manager.get_table_from_file(current_file_path + "/customers.csv")
-
-        if option == "1":
-            show_table()
-        elif option == "2":
-            add()
-        elif option == "3":
-            remove()
-        elif option == "4":
-            update()
-        elif option == "5":
-            get_longest_name_id()
-        elif option == "6":
-            get_subscribed_emails()
-        elif option == "0":
-            break
-        else:
-            raise KeyError("There is no such option.")
-        pass
-
 
 # print the default table of records from the file
 #
 # @table: list of lists
 def show_table(table):
     title_list = ["ID", "name", "e-mail", "subscribed"]
-    table = data_manager.get_table_from_file(current_file_path + "/customers.csv")
     ui.print_table(table, title_list)
     pass
 
@@ -75,7 +33,8 @@ def show_table(table):
 #
 # @table: list of lists
 def add(table):
-    # title_list = ["ID", "name", "e-mail", "subscribed"]
+    title_list = ["name", "e-mail", "subscribed"]
+    table = common.common_add(table, title_list, "/customers.csv")
 
     return table
 
@@ -84,10 +43,10 @@ def add(table):
 #
 # @table: list of lists
 # @id_: string
-def remove(table, id_):
-
-    # title_list = ["ID"]
-
+def remove(table):
+    list_labels = ["ID"]
+    id_ = get_inputs(list_labels, "")
+    table = common.common_remove(table, id_)
     return table
 
 
@@ -124,4 +83,41 @@ def get_subscribed_emails(table):
 
     pass
 
-start_module()
+
+# start this module by a module menu like the main menu
+# user need to go back to the main menu from here
+# we need to reach the default and the special functions of this module from the module menu
+#
+
+
+def start_module():
+    options = ["1. Show items",
+    "2. Add items",
+    "3. Remove items",
+    "4. Update items",
+    "5. Get longest name id",
+    "6. Get subscribed emails",
+    "0. Back to the main menu"]
+
+    while True:
+        ui.print_menu("", options, "Error message")
+        option = ui.get_inputs(["Please enter a number: "], "")
+        table = data_manager.get_table_from_file(current_file_path + "/customers.csv")
+
+        if option[0] == "1":
+            show_table(table)
+        elif option[0] == "2":
+            add(table)
+        elif option[0] == "3":
+            remove(table)
+        elif option[0] == "4":
+            update(table)
+        elif option[0] == "5":
+            get_longest_name_id()
+        elif option[0] == "6":
+            get_subscribed_emails()
+        elif option[0] == "0":
+            break
+        else:
+            raise KeyError("There is no such option.")
+            pass
