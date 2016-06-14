@@ -1,10 +1,3 @@
-'''table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
-["jH34Ju", "Age of Mythology", "Ensemble Studios", "40", "4"],
-["tH34Ju", "Age of Empires II: The Conquerors", "Ensemble Studios", "30", "3"]]
-
-title_list = ["id", "name", "kiado", "randomnum1", "random1"]
-'''
-
 # This function needs to print outputs like this:
 # /-----------------------------------\
 # |   id   |      title     |  type   |
@@ -62,17 +55,27 @@ def print_table(table, title_list):
 
     pass
 
-# print_table(table, title_list)
-
 
 # This function needs to print result of the special functions
 #
 # @result: string or list or dictionary - result of the special function
 # @label: string - label of the result
 def print_result(result, label):
-    # mi a különbség a különböző formátumok esetén? így lehet ellenőrizni?
-    # if result is list
-    print(label + ":" + result)
+
+    if isinstance(result, str):
+        print(label)
+        print("\t" + result)
+    elif isinstance(result, dict):
+        print(label)
+        for i in result:
+            print("\t" + "-" + i + " --> " + result[i])
+    elif isinstance(result, list):
+        print(label)
+        for i in range(len(result)):
+            print("\t" + "-" + result[i])
+    else:
+        print(label)
+        print("\t" + str(result))
 
     pass
 
@@ -95,9 +98,9 @@ def print_menu(title, list_options, exit_message):
     counter = 1
     print(title)
     for i in list_options:
-        print("("+counter+")" + i)
+        print("("+str(counter)+")" + "\t" + str(i))
         counter += 1
-    print("(0)" + exit_message)
+    print("(0)" + "\t" + exit_message)
 
     pass
 
@@ -111,7 +114,7 @@ def get_inputs(list_labels, title):
     inputs = []
     print(title)
     for i in list_labels:
-        inputs = inputs.append(input("I am waiting for:", i))
+        inputs = inputs.append(input(i + " "))
 
     return inputs
 
@@ -121,6 +124,6 @@ def get_inputs(list_labels, title):
 # @message: string - the error message
 def print_error_message(message):
 
-    print("Error message:", message)
+    print("Error message: " + message)
 
     pass
