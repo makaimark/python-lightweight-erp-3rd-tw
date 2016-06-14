@@ -2,7 +2,7 @@
 
 import random
 
-table = ['h', 'k', 'hhh']
+
 # generate and return a unique and random string
 # other expectation:
 # - at least 2 special char()expect: ';'), 2 number, 2 lower and 2 upper case letter
@@ -14,18 +14,15 @@ table = ['h', 'k', 'hhh']
 
 def generate_random(table):
     result = ""
-    generated = ''
-    i = 0
+    generated = ""
 
     while True:
-        generated = generated + random.choice("abcdefghijklmnopqrstuvwxyz")
-        generated = generated + random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-        generated = generated + random.choice("0123456789")
-        generated = generated + random.choice("0123456789")
-        generated = generated + random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-        generated = generated + random.choice("abcdefghijklmnopqrstuvwxyz")
-        generated = generated + "#"
-        generated = generated + "&"
+        for i in range(0, 2):
+            generated = generated + random.choice("abcdefghijklmnopqrstuvwxyz")
+            generated = generated + random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            generated = generated + random.choice("0123456789")
+            generated = generated + random.choice("<>#&@{}<")
+        ''.join(random.sample(generated, len(generated)))
         if generated in table:
             generated = ""
         else:
