@@ -71,7 +71,7 @@ def print_table(table, title_list):
 # @label: string - label of the result
 def print_result(result, label):
     # mi a különbség a különböző formátumok esetén? így lehet ellenőrizni?
-    if result is list
+    # if result is list
     print(label + ":" + result)
 
     pass
@@ -109,8 +109,9 @@ def print_menu(title, list_options, exit_message):
 # @inputs: list of string - list of the received values from the user
 def get_inputs(list_labels, title):
     inputs = []
-    # meddig kell inputokat várni???
-    inputs = inputs.append(input(list_labels))
+    print(title)
+    for i in list_labels:
+        inputs = inputs.append(input("I am waiting for:", i))
 
     return inputs
 
