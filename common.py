@@ -10,10 +10,23 @@ import random
 #
 # @table: list of list
 # @generated: string - generated random string (unique in the @table)
+
+
 def generate_random(table):
+    result = ""
+    generated = ""
 
-    generated = ''
+    while True:
+        for i in range(0, 2):
+            generated = generated + random.choice("abcdefghijklmnopqrstuvwxyz")
+            generated = generated + random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+            generated = generated + random.choice("0123456789")
+            generated = generated + random.choice("<>#&@{}<")
+        ''.join(random.sample(generated, len(generated)))
+        if generated in table:
+            generated = ""
+        else:
+            return generated
 
-    # your code
-
-    return generated
+result = generate_random(table)
+print(result)
