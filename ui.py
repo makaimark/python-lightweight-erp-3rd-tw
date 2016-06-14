@@ -31,13 +31,16 @@ def print_table(table, title_list):
                     max_len_element[counter] = len(title_list[counter])
                 counter += 1
 
-    max_len_list = sum(max_len_element) + 20    # 10 | and 10 spaces
+    max_len_list = sum(max_len_element) + 16    # 10 | and 10 spaces
 
     counter = 0
     print("-" * max_len_list)
 
     for i in title_list:
-        formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(i)
+        if counter == 4:
+            formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(i)
+        else:
+            formatted_string = formatted_string + ("| {:^%d} " % max_len_element[counter]).format(i)
         counter += 1
     print(formatted_string)
     print("-" * max_len_list)
@@ -46,7 +49,10 @@ def print_table(table, title_list):
     for i in table:
         counter = 0
         for j in i:
-            formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(j)
+            if counter == 4:
+                formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(j)
+            else:
+                formatted_string = formatted_string + ("| {:^%d} " % max_len_element[counter]).format(j)
             counter += 1
         print(formatted_string)
         print("-" * max_len_list)
@@ -63,7 +69,8 @@ print_table(table, title_list)
 # @label: string - label of the result
 def print_result(result, label):
 
-    # your code
+    if result is list:
+        print(label + ":" + result)
 
     pass
 
@@ -83,7 +90,12 @@ def print_result(result, label):
 # @exit_message: string - the last option with (0) (example: "Back to main menu")
 def print_menu(title, list_options, exit_message):
 
-    # your code
+    counter = 0
+    print(title)
+    for i in list_options:
+        print("("+counter+")" + i)
+        counter += 1
+    print("(0)" + exit_message)
 
     pass
 
@@ -96,7 +108,7 @@ def print_menu(title, list_options, exit_message):
 def get_inputs(list_labels, title):
     inputs = []
 
-    # your code
+    inputs = input(list_labels)
 
     return inputs
 
@@ -106,6 +118,6 @@ def get_inputs(list_labels, title):
 # @message: string - the error message
 def print_error_message(message):
 
-    # your code
+    print(message)
 
     pass
