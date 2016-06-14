@@ -34,7 +34,7 @@ def show_table(table):
 # @table: list of lists
 def add(table):
     title_list = ["name", "e-mail", "subscribed"]
-    table = common.common_add(table, title_list, "/customers.csv")
+    table = common.common_add(table, title_list)
 
     return table
 
@@ -45,8 +45,8 @@ def add(table):
 # @id_: string
 def remove(table):
     list_labels = ["ID"]
-    id_ = get_inputs(list_labels, "")
-    table = common.common_remove(table, id_)
+    id_ = ui.get_inputs(list_labels, "")
+    table = common.common_remove(table, id_[0])
     return table
 
 
@@ -99,17 +99,18 @@ def start_module():
     "6. Get subscribed emails",
     "0. Back to the main menu"]
 
+    table = data_manager.get_table_from_file(current_file_path + "/customers.csv")
+
     while True:
         ui.print_menu("", options, "Error message")
         option = ui.get_inputs(["Please enter a number: "], "")
-        table = data_manager.get_table_from_file(current_file_path + "/customers.csv")
 
         if option[0] == "1":
             show_table(table)
         elif option[0] == "2":
-            add(table)
+            table = add(table)
         elif option[0] == "3":
-            remove(table)
+            table = remove(table)
         elif option[0] == "4":
             update(table)
         elif option[0] == "5":
@@ -121,3 +122,4 @@ def start_module():
         else:
             raise KeyError("There is no such option.")
             pass
+        data_manager.write_table_to_file(current_file_path + "/customers.csv", table)
