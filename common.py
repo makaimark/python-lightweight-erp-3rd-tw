@@ -48,18 +48,13 @@ def common_add(table, title_list):
 
 
 def common_remove(table, id_):
-    # the_input = ui.get_inputs("Give me an ID: ")
-    while True:
-        for i in table:
-            if i[0] == id_:
-                table.remove(i)
-                break
-            else:
-                ui.print_error_message("This ID doesn't exist.")
-                break
-
-
-
+    print("id:" + id_)
+    for i in table:
+        if i[0] == id_:
+            table.remove(i)
+            return table
+    ui.print_error_message("This ID doesn't exist.")
+    return table
 
 
 
