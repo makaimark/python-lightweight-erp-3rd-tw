@@ -13,7 +13,7 @@
 
 def print_table(table, title_list):
     max_len_list = 0
-    max_len_element = [0, 0, 0, 0, 0, 0]
+    max_len_element = [0 for i in range(len(title_list))]
     counter = 0
     formatted_string = ""
     for i in table:
@@ -124,6 +124,6 @@ def get_inputs(list_labels, title):
 # @message: string - the error message
 def print_error_message(message):
 
-    print("Error message: " + message)
+    print(message)
 
     pass
