@@ -1,9 +1,9 @@
-table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
+'''table = [["kH34Ju", "Age of Empires II: The Age of Kings", "Ensemble Studios", "32", "32"],
 ["jH34Ju", "Age of Mythology", "Ensemble Studios", "40", "4"],
 ["tH34Ju", "Age of Empires II: The Conquerors", "Ensemble Studios", "30", "3"]]
 
 title_list = ["id", "name", "kiado", "randomnum1", "random1"]
-
+'''
 
 # This function needs to print outputs like this:
 # /-----------------------------------\
@@ -16,6 +16,8 @@ title_list = ["id", "name", "kiado", "randomnum1", "random1"]
 #
 # @table: list of lists - the table to print out
 # @title_list: list of strings - the head of the table
+
+
 def print_table(table, title_list):
     max_len_list = 0
     max_len_element = [0, 0, 0, 0, 0, 0]
@@ -60,7 +62,7 @@ def print_table(table, title_list):
 
     pass
 
-print_table(table, title_list)
+# print_table(table, title_list)
 
 
 # This function needs to print result of the special functions
@@ -68,9 +70,9 @@ print_table(table, title_list)
 # @result: string or list or dictionary - result of the special function
 # @label: string - label of the result
 def print_result(result, label):
-
-    if result is list:
-        print(label + ":" + result)
+    # mi a különbség a különböző formátumok esetén? így lehet ellenőrizni?
+    if result is list
+    print(label + ":" + result)
 
     pass
 
@@ -90,7 +92,7 @@ def print_result(result, label):
 # @exit_message: string - the last option with (0) (example: "Back to main menu")
 def print_menu(title, list_options, exit_message):
 
-    counter = 0
+    counter = 1
     print(title)
     for i in list_options:
         print("("+counter+")" + i)
@@ -107,8 +109,8 @@ def print_menu(title, list_options, exit_message):
 # @inputs: list of string - list of the received values from the user
 def get_inputs(list_labels, title):
     inputs = []
-
-    inputs = input(list_labels)
+    # meddig kell inputokat várni???
+    inputs = inputs.append(input(list_labels))
 
     return inputs
 
@@ -118,6 +120,6 @@ def get_inputs(list_labels, title):
 # @message: string - the error message
 def print_error_message(message):
 
-    print(message)
+    print("Error message:", message)
 
     pass
