@@ -8,7 +8,7 @@
 # amount: number (dollar)
 
 
-# importing everything you need
+
 import os
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
@@ -19,57 +19,47 @@ data_manager = SourceFileLoader("data_manager", current_file_path + "/../data_ma
 # common module
 common = SourceFileLoader("common", current_file_path + "/../common.py").load_module()
 
-
-# start this module by a module menu like the main menu
-# user need to go back to the main menu from here
-# we need to reach the default and the special functions of this module from the module menu
-#
-def start_module():
-
-    # you code
-
-    pass
+table = data_manager.get_table_from_file(current_file_path + "/items.csv")
 
 
-# print the default table of records from the file
-#
-# @table: list of lists
+
+
 def show_table(table):
+    title_list = ["ID", "month", "day", "year", 'type', 'amount']
+    ui.print_table(table, title_list)
 
-    # your code
+
 
     pass
 
 
-# Ask a new record as an input from the user than add it to @table, than return @table
-#
-# @table: list of lists
+
 def add(table):
+    title_list = ["month", "day", "year", 'type', 'amount']
+    table = common.common_add(table, title_list)
+
+
+    return table
+
+
+
+def remove(table):
+    list_labels = ["ID"]
+    id_ = ui.get_inputs(list_labels, "")
+    table = common.common_remove(table, id_[0])
 
     # your code
 
     return table
 
 
-# Remove the record having the id @id_ from the @list, than return @table
-#
-# @table: list of lists
-# @id_: string
-def remove(table, id_):
 
-    # your code
+def update(table):
 
-    return table
+    title_list = ["month", "day", "year", 'type', 'amount']
+    id_ = ui.get_inputs(["ID:"], "")
+    common.common_update(table, title_list, id_[0])
 
-
-# Update the record in @table having the id @id_ by asking the new data from the user,
-# than return @table
-#
-# @table: list of lists
-# @id_: string
-def update(table, id_):
-
-    # your code
 
     return table
 
@@ -80,6 +70,29 @@ def update(table, id_):
 # the question: Which year has the highest profit? (profit=in-out)
 # return the answer (number)
 def which_year_max(table):
+    max_value = 0
+    max_key = ""
+    profit_year = {}
+
+    for i in table:
+        if i[3] not in profit_year.keys():
+            if i[4] == "in":
+                profit_year[i[3]] = int(i[5])
+            elif i[4] == "out":
+                profit_year[i[3]] = int(i[5])
+        if i[3] in profit_year.keys():
+            if i[4] == "in":
+                profit_year[i[3]] += int(i[5])
+            elif i[4] == "out":
+                profit_year[i[3]] -= int(i[5])
+
+    for k in profit_year:
+        if profit_year[k] > max_value:
+            max_value = profit_year[k]
+            max_key = k
+    return k
+
+
 
     # your code
 
@@ -90,6 +103,42 @@ def which_year_max(table):
 # return the answer (number)
 def avg_amount(table, year):
 
+
     # your code
 
     pass
+
+def start_module():
+    options = ["Show table",
+               "Add item",
+               "Remove item",
+               "Update table",
+               "Year with most profit",
+               "Average profit in a given year"]
+
+    table = data_manager.get_table_from_file(current_file_path + "/items.csv")
+
+
+    while True:
+        ui.print_menu("Accounting menu", options, 'Back to main menu')
+        option = ui.get_inputs(["Please enter a number: "], "")
+
+
+
+        if option[0] == "1":
+            show_table(table)
+        elif option[0] == "2":
+            add(table)
+        elif option[0] == "3":
+            remove(table)
+        elif option[0] == "4":
+            update(table)
+        elif option[0] == "5":
+            which_year_max(table)
+        elif option[0] == "6":
+            avg_amount(table,year)
+        elif option[0] == "0":
+            break
+        else:
+            raise KeyError("There is no such option.")
+            pass

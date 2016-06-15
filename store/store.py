@@ -48,13 +48,14 @@ def start_module():
         elif option[0] == "5":
             get_counts_by_manufacturers(table)
         elif option[0] == "6":
-            get_average_by_manufacturer(table, manufacturer)
+            
+            get_average_by_manufacturer(table)
         elif option[0] == "0":
             break
         else:
             raise KeyError("There is no such option.")
             pass
-
+        data_manager.write_table_to_file(current_file_path + "/games.csv", table)
 
 # print the default table of records from the file
 #
@@ -93,8 +94,8 @@ def remove(table):
 # @id_: string
 def update(table):
     title_list = ["Title", "Manufacturer", "Price", "In stock:"]
-    common.common_update(table, title_list)
-    #data_manager.write_table_to_file(current_file_path + "/games.csv", table)
+    id_ = ui.get_inputs(["ID:"], "")
+    common.common_update(table, title_list, id_[0])
     return table
 
 
@@ -111,19 +112,19 @@ def get_counts_by_manufacturers(table):
             data[table[i][2]] = 1
         else:
             data[table[i][2]] += 1
-        print_table()
-    #return data
+    # ui.print_result(data, ' ')
+    print(data)  # works with print
 
 
 # the question: What is the average amount of games in stock of a given manufacturer?
 # return type: number
-def get_average_by_manufacturer(table, manufacturer):
+def get_average_by_manufacturer(table):
     counter = 0
     summa = 0
     for i in range(len(table)):
         if manufacturer == table[i][2]:
             summa += int(table[i][4])
             counter += 1
-    res = all_stock/counter
-    #print_table(res, "Average by Manufacturer:")
-    print(res)
+    result = summa/counter
+    # print_table(res, "Average by Manufacturer:")
+    print(result)
