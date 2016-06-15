@@ -77,7 +77,7 @@ def which_year_max(table):
         if profit_year[k] > max_value:
             max_value = profit_year[k]
             max_key = k
-    return max_key
+    return int(max_key)
 
     pass
 
