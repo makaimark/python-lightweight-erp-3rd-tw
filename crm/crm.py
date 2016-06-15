@@ -91,11 +91,9 @@ def get_subscribed_emails(table):
     subscribed = []
     for i in data_line:
         if i[3] == "1":
-            subscribed.append([i[2] + "   ;   " + i[1]])
-    titles = ["e-mail" + "   ;   " + "name"]
-    ui.print_table(subscribed, titles)
-
-    pass
+            subscribed.append("{0};{1}".format(i[2], i[1]))
+    return subscribed
+    # pass
 
 
 # start this module by a module menu like the main menu
@@ -131,7 +129,12 @@ def start_module():
         elif option[0] == "5":
             get_longest_name_id(table)
         elif option[0] == "6":
-            get_subscribed_emails(table)
+            title_list = ["email", "name"]
+            subscribed_email = get_subscribed_emails(table)
+            sub_list = []
+            for i in range(len(subscribed_email)):
+                sub_list.append(subscribed_email[i].split(";"))
+            ui.print_table(sub_list, title_list)
         elif option[0] == "0":
             break
         else:
