@@ -26,7 +26,10 @@ def print_table(table, title_list):
                     max_len_element[counter] = len(title_list[counter])
                 counter += 1
 
-    max_len_list = sum(max_len_element) + 16    # 6 | and 10 spaces
+    for i in max_len_element:
+        max_len_list += i
+
+    max_len_list += 16    # 6 | and 10 spaces
 
     counter = 0
     print("-" * max_len_list)
