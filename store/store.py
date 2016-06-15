@@ -83,7 +83,6 @@ def remove(table):
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
     table = common.common_remove(table, id_[0])
-
     return table
 
 
@@ -92,10 +91,10 @@ def remove(table):
 #
 # @table: list of lists
 # @id_: string
-def update(table, id_):
-
-    # your code
-
+def update(table):
+    title_list = ["Title", "Manufacturer", "Price", "In stock:"]
+    common.common_update(table, title_list)
+    #data_manager.write_table_to_file(current_file_path + "/games.csv", table)
     return table
 
 
@@ -105,10 +104,15 @@ def update(table, id_):
 # the question: How many different kinds of game are available of each manufacturer?
 # return type: a dictionary with this structure: { [manufacturer] : [count] }
 def get_counts_by_manufacturers(table):
-
-    # your code
-
-    pass
+    data = {}
+    for i in range(len(table)):
+        stat = table[i][2] in data
+        if stat is not True:
+            data[table[i][2]] = 1
+        else:
+            data[table[i][2]] += 1
+        print_table()
+    #return data
 
 
 # the question: What is the average amount of games in stock of a given manufacturer?
@@ -116,7 +120,9 @@ def get_counts_by_manufacturers(table):
 def get_average_by_manufacturer(table, manufacturer):
     counter = 0
     summa = 0
-    
-    # your code
-
-    pass
+    for i in range(len(table)):
+        if manufacturer == table[i][2]:
+            summa += int(table[i][4])
+            counter += 1
+    res = all_stock/counter
+    print_table()
