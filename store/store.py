@@ -113,7 +113,6 @@ def get_counts_by_manufacturers(table):
         else:
             data[table[i][2]] += 1
     return data
-    # print(data)  # works with print
 
 
 # the question: What is the average amount of games in stock of a given manufacturer?
