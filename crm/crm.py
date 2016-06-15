@@ -35,7 +35,7 @@ def show_table(table):
 def add(table):
     title_list = ["name", "e-mail", "subscribed"]
     common.common_add(table, title_list)
-
+    ui.print_table(table)
     return table
 
 
@@ -47,6 +47,7 @@ def remove(table):
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
     common.common_remove(table, id_[0])
+    ui.print_table(table)
     return table
 
 
@@ -59,6 +60,7 @@ def update(table):
     title_list = ["name", "e-mail", "subscribed"]
     id_ = ui.get_inputs(["ID:"], "")
     common.common_update(table, title_list, id_[0])
+    ui.print_table(table)
     return table
 
 
@@ -71,6 +73,7 @@ def update(table):
 def get_longest_name_id(table):
     longest_names = [' ']
     longest = 0
+    result = ""
     for line in table:
         if len(line[1]) > longest:
             longest_names = []
@@ -80,6 +83,7 @@ def get_longest_name_id(table):
             longest_names.append(line[0])
             longest = len(line[1])
     ui.print_result(longest_names, ' ')
+    ui.print_result(longest_names)
     return longest_names
     pass
 
@@ -92,6 +96,7 @@ def get_subscribed_emails(table):
     for i in data_line:
         if i[3] == "1":
             subscribed.append("{0};{1}".format(i[2], i[1]))
+    ui.print_result(subscribed)
     return subscribed
     # pass
 
