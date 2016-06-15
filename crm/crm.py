@@ -57,7 +57,8 @@ def remove(table):
 # @id_: string
 def update(table):
     title_list = ["name", "e-mail", "subscribed"]
-    common.common_update(table, title_list)
+    id_ = ui.get_inputs(["ID:"], "")
+    common.common_update(table, title_list, id_[0])
     return table
 
 
