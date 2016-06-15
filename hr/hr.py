@@ -22,18 +22,44 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # we need to reach the default and the special functions of this module from the module menu
 #
 def start_module():
+    options = ["1. Show items",
+                "2. Add items",
+                "3. Remove items",
+                "4. Update items",
+                "5. Get oldest person",
+                "6. Get closest person to average",
+                "0. Back to the main menu"]
 
-    # you code
+    table = data_manager.get_table_from_file(current_file_path + "/persons.csv")
+    while True:
+        ui.print_menu("", options, "Error message")
+        option = ui.get_inputs(["Please enter a number: "], "")
 
-    pass
-
+        if option[0] == "1":
+            show_table(table)
+        elif option[0] == "2":
+            add(table)
+        elif option[0] == "3":
+            remove(table)
+        elif option[0] == "4":
+            update(table)
+        elif option[0] == "5":
+            get_oldest_person(table)
+        elif option[0] == "6":
+            get_persons_closest_to_average(table)
+        elif option[0] == "0":
+            break
+        else:
+            raise KeyError("There is no such option.")
+            pass
+        data_manager.write_table_to_file(current_file_path + "/persons.csv", table)
 
 # print the default table of records from the file
 #
 # @table: list of lists
 def show_table(table):
-
-    # your code
+    title_list = ["ID", "name", "birthdate"]
+    ui.print_table(table, title_list)
 
     pass
 
@@ -42,8 +68,8 @@ def show_table(table):
 #
 # @table: list of lists
 def add(table):
-
-    # your code
+    title_list = ["name", "birthdate"]
+    table = common.common_add(table, title_list)
 
     return table
 
@@ -52,9 +78,10 @@ def add(table):
 #
 # @table: list of lists
 # @id_: string
-def remove(table, id_):
-
-    # your code
+def remove(table):
+    list_labels = ["ID"]
+    id_ = ui.get_inputs(list_labels, "")
+    table = common.common_remove(table, id_[0])
 
     return table
 
@@ -64,10 +91,10 @@ def remove(table, id_):
 #
 # @table: list of lists
 # @id_: string
-def update(table, id_):
-
-    # your code
-
+def update(table):
+    title_list = ["name", "birthdate"]
+    id_ = ui.get_inputs(["ID:"], "")
+    common.common_update(table, title_list, id_[0])
     return table
 
 
@@ -77,16 +104,40 @@ def update(table, id_):
 # the question: Who is the oldest person ?
 # return type: list of strings (name or names if there are two more with the same value)
 def get_oldest_person(table):
+    years = []
+    persons = []
+    title_list = "Oldest persons"
+    for line in table:
+        years.append(int(line[2]))
+    for line in table:
+        if int(line[2]) <= min(years):
+            persons.append(line[1])
+    ui.print_result(persons, title_list)
+    # print("\n".join(persons))
 
-    # your code
 
-    pass
 
 
 # the question: Who is the closest to the average age ?
 # return type: list of strings (name or names if there are two more with the same value)
 def get_persons_closest_to_average(table):
-
-    # your code
-
-    pass
+    label = "Closest person to average"
+    average_age = 0
+    b = 1000
+    age_list = []
+    avg_diff = 0
+    result = []
+    for line in table:
+        data = [line[1], int(line[2]), avg_diff]
+        age_list.append(data)
+    for line in table:
+        average_age += int(line[2])
+    average_age = int(average_age / len(age_list))
+    for line in age_list:
+        line[2] = abs(average_age - line[1])
+        if line[2] < b:
+            b = line[2]
+    for line in age_list:
+        if line[2] == b:
+            result.append(line[0])
+    ui.print_result(" ,".join(result), label)

@@ -69,8 +69,17 @@ def update(table):
 # the question: What is the id of the customer with the longest name ?
 # return type: string (id) - if there are more than one longest name, return the first of descending alphabetical order
 def get_longest_name_id(table):
-
-    # title_list = ["ID"]
+    longest_names = [' ']
+    longest = 0
+    for line in table:
+        if len(line[1]) > longest:
+            longest_names = []
+            longest_names.append(line[0])
+            longest = len(line[1])
+        elif len(line[1]) == longest:
+            longest_names.append(line[0])
+            longest = len(line[1])
+    ui.print_result(longest_names, ' ')
 
     pass
 
@@ -78,8 +87,13 @@ def get_longest_name_id(table):
 # the question: Which customers has subscribed to the newsletter?
 # return type: list of string (where string is like email+separator+name, separator=";")
 def get_subscribed_emails(table):
-
-    # title_list = ["ID", "name", "e-mail", "subscribed"]
+    data_line = table
+    subscribed = []
+    for i in data_line:
+        if i[3] == "1":
+            subscribed.append([i[2] + "   ;   " + i[1]])
+    titles = ["e-mail" + "   ;   " + "name"]
+    ui.print_table(subscribed, titles)
 
     pass
 
@@ -115,9 +129,9 @@ def start_module():
         elif option[0] == "4":
             table = update(table)
         elif option[0] == "5":
-            get_longest_name_id()
+            get_longest_name_id(table)
         elif option[0] == "6":
-            get_subscribed_emails()
+            get_subscribed_emails(table)
         elif option[0] == "0":
             break
         else:
