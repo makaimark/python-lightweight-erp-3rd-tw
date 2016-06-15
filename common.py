@@ -42,7 +42,6 @@ def common_add(table, title_list):
 
 
 def common_remove(table, id_):
-    print("id:" + id_)
     for i in table:
         if i[0] == id_:
             table.remove(i)

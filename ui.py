@@ -68,7 +68,7 @@ def print_result(result, label):
     elif isinstance(result, dict):
         print(label)
         for i in result:
-            print("\t" + "-" + i + " --> " + result[i])
+            print("\t" + "-" + i + " --> " + str(result[i]))
     elif isinstance(result, list):
         print(label)
         for i in range(len(result)):

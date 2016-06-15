@@ -54,10 +54,11 @@ def start_module():
         else:
             raise KeyError("There is no such option.")
             pass
-
+        data_manager.write_table_to_file(current_file_path + "/games.csv", table)
 
 # print the default table of records from the file
-#
+
+
 # @table: list of lists
 def show_table(table):
     title_list = ["ID", "Title", "Manufacturer", "Price", "In stock"]
@@ -93,8 +94,8 @@ def remove(table):
 # @id_: string
 def update(table):
     title_list = ["Title", "Manufacturer", "Price", "In stock:"]
-    common.common_update(table, title_list)
-    #data_manager.write_table_to_file(current_file_path + "/games.csv", table)
+    id_ = ui.get_inputs(["ID:"], "")
+    common.common_update(table, title_list, id_[0])
     return table
 
 
@@ -111,8 +112,7 @@ def get_counts_by_manufacturers(table):
             data[table[i][2]] = 1
         else:
             data[table[i][2]] += 1
-        print_table()
-    #return data
+    return data
 
 
 # the question: What is the average amount of games in stock of a given manufacturer?
@@ -124,6 +124,5 @@ def get_average_by_manufacturer(table, manufacturer):
         if manufacturer == table[i][2]:
             summa += int(table[i][4])
             counter += 1
-    res = all_stock/counter
-    #print_table(res, "Average by Manufacturer:")
-    print(res)
+    result = summa/counter
+    return result
