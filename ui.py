@@ -24,7 +24,7 @@ def print_table(table, title_list):
                     max_len_element[counter] = len(j)
                 else:
                     max_len_element[counter] = len(title_list[counter])
-                counter += 1
+            counter += 1
 
     for i in max_len_element:
         max_len_list += i
@@ -35,7 +35,7 @@ def print_table(table, title_list):
     print("-" * max_len_list)
 
     for i in title_list:
-        if counter == 4:
+        if counter+1 == len(title_list):
             formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(i)
         else:
             formatted_string = formatted_string + ("| {:^%d} " % max_len_element[counter]).format(i)
@@ -47,7 +47,7 @@ def print_table(table, title_list):
     for i in table:
         counter = 0
         for j in i:
-            if counter == 4:
+            if counter+1 == len(title_list):
                 formatted_string = formatted_string + ("| {:^%d} |" % max_len_element[counter]).format(j)
             else:
                 formatted_string = formatted_string + ("| {:^%d} " % max_len_element[counter]).format(j)
