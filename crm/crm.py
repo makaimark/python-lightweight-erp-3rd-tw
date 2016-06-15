@@ -80,7 +80,7 @@ def get_longest_name_id(table):
             longest_names.append(line[0])
             longest = len(line[1])
     ui.print_result(longest_names, ' ')
-
+    return longest_names
     pass
 
 
