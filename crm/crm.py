@@ -34,7 +34,7 @@ def show_table(table):
 # @table: list of lists
 def add(table):
     title_list = ["name", "e-mail", "subscribed"]
-    table = common.common_add(table, title_list)
+    common.common_add(table, title_list)
 
     return table
 
@@ -46,7 +46,7 @@ def add(table):
 def remove(table):
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
-    table = common.common_remove(table, id_[0])
+    common.common_remove(table, id_[0])
     return table
 
 
@@ -55,10 +55,9 @@ def remove(table):
 #
 # @table: list of lists
 # @id_: string
-def update(table, id_):
-
-    # title_list = ["ID", "name", "e-mail", "subscribed"]
-
+def update(table):
+    title_list = ["name", "e-mail", "subscribed"]
+    common.common_update(table, title_list)
     return table
 
 
@@ -102,6 +101,7 @@ def start_module():
     table = data_manager.get_table_from_file(current_file_path + "/customers.csv")
 
     while True:
+        id_ = []
         ui.print_menu("", options, "Error message")
         option = ui.get_inputs(["Please enter a number: "], "")
 
@@ -112,7 +112,7 @@ def start_module():
         elif option[0] == "3":
             table = remove(table)
         elif option[0] == "4":
-            update(table)
+            table = update(table)
         elif option[0] == "5":
             get_longest_name_id()
         elif option[0] == "6":
