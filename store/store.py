@@ -63,7 +63,6 @@ def start_module():
 def show_table(table):
     title_list = ["ID", "Title", "Manufacturer", "Price", "In stock"]
     ui.print_table(table, title_list)
-    # your code
     pass
 
 
@@ -73,6 +72,7 @@ def show_table(table):
 def add(table):
     title_list = ["Title", "Manufacturer", "Price", "In stock:"]
     table = common.common_add(table, title_list)
+    ui.print_table(table)
     return table
 
 
@@ -84,6 +84,7 @@ def remove(table):
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
     table = common.common_remove(table, id_[0])
+    ui.print_table(table)
     return table
 
 
@@ -96,6 +97,7 @@ def update(table):
     title_list = ["Title", "Manufacturer", "Price", "In stock:"]
     id_ = ui.get_inputs(["ID:"], "")
     common.common_update(table, title_list, id_[0])
+    ui.print_table(table)
     return table
 
 
@@ -112,6 +114,7 @@ def get_counts_by_manufacturers(table):
             data[table[i][2]] = 1
         else:
             data[table[i][2]] += 1
+    print_result(data)
     return data
 
 
@@ -125,4 +128,5 @@ def get_average_by_manufacturer(table, manufacturer):
             summa += int(table[i][4])
             counter += 1
     result = summa/counter
+    print_result(result)
     return result
