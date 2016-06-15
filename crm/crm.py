@@ -78,8 +78,13 @@ def get_longest_name_id(table):
 # the question: Which customers has subscribed to the newsletter?
 # return type: list of string (where string is like email+separator+name, separator=";")
 def get_subscribed_emails(table):
-
-    # title_list = ["ID", "name", "e-mail", "subscribed"]
+    data_line = table
+    subscribed = []
+    for i in data_line:
+        if i[3] == "1":
+            subscribed.append([i[2] + "   ;   " + i[1]])
+    titles = ["e-mail" + "   ;   " + "name"]
+    ui.print_table(subscribed, titles)
 
     pass
 
@@ -115,9 +120,9 @@ def start_module():
         elif option[0] == "4":
             table = update(table)
         elif option[0] == "5":
-            get_longest_name_id()
+            get_longest_name_id(table)
         elif option[0] == "6":
-            get_subscribed_emails()
+            get_subscribed_emails(table)
         elif option[0] == "0":
             break
         else:
