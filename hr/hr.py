@@ -126,7 +126,7 @@ def get_persons_closest_to_average(table):
     b = 1000
     age_list = []
     avg_diff = 0
-    result = ""
+    result = []
     for line in table:
         data = [line[1], int(line[2]), avg_diff]
         age_list.append(data)
@@ -139,5 +139,5 @@ def get_persons_closest_to_average(table):
             b = line[2]
     for line in age_list:
         if line[2] == b:
-            result = line[0]
-    ui.print_result(result, label)
+            result.append(line[0])
+    ui.print_result(" ,".join(result), label)
