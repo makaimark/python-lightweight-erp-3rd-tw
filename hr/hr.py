@@ -52,7 +52,7 @@ def start_module():
         else:
             raise KeyError("There is no such option.")
             pass
-        data_manager.write_table_to_file(current_file_path + "/customers.csv", table)
+        data_manager.write_table_to_file(current_file_path + "/persons.csv", table)
 
 # print the default table of records from the file
 #
@@ -93,7 +93,8 @@ def remove(table):
 # @id_: string
 def update(table):
     title_list = ["name", "birthdate"]
-    common.common_update(table, title_list)
+    id_ = ui.get_inputs(["ID:"], "")
+    common.common_update(table, title_list, id_[0])
     return table
 
 
@@ -105,13 +106,13 @@ def update(table):
 def get_oldest_person(table):
     years = []
     persons = []
-    title_list = ["names"]
+    title_list = "Oldest persons"
     for line in table:
         years.append(int(line[2]))
     for line in table:
         if int(line[2]) <= min(years):
             persons.append(line[1])
-    ui.print_table(persons, title_)
+    ui.print_result(persons, title_list)
     # print("\n".join(persons))
 
 
