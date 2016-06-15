@@ -28,8 +28,8 @@ def start_module():
     "2. Add items",
     "3. Remove items",
     "4. Update items",
-    "5. Get longest name id",
-    "6. Get subscribed emails",
+    "5. Get counts by manufacturers",
+    "6. Get average by manufacturer",
     "0. Back to the main menu"]
 
     table = data_manager.get_table_from_file(current_file_path + "/games.csv")
@@ -125,4 +125,5 @@ def get_average_by_manufacturer(table, manufacturer):
             summa += int(table[i][4])
             counter += 1
     res = all_stock/counter
-    print_table()
+    #print_table(res, "Average by Manufacturer:")
+    print(res)
