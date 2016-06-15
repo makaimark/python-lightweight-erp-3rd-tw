@@ -29,7 +29,7 @@ def print_table(table, title_list):
     for i in max_len_element:
         max_len_list += i
 
-    max_len_list += 16    # 6 | and 10 spaces
+    max_len_list += (2 + len(title_list)-1 + len(title_list)*2)
 
     counter = 0
     print("-" * max_len_list)
