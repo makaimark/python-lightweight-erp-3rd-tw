@@ -7,8 +7,6 @@
 # type: string (in = income, out = outcome)
 # amount: number (dollar)
 
-
-
 import os
 from importlib.machinery import SourceFileLoader
 current_file_path = os.path.dirname(os.path.abspath(__file__))
@@ -22,25 +20,18 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 table = data_manager.get_table_from_file(current_file_path + "/items.csv")
 
 
-
-
 def show_table(table):
     title_list = ["ID", "month", "day", "year", 'type', 'amount']
     ui.print_table(table, title_list)
 
-
-
     pass
-
 
 
 def add(table):
     title_list = ["month", "day", "year", 'type', 'amount']
     table = common.common_add(table, title_list)
 
-
     return table
-
 
 
 def remove(table):
@@ -53,13 +44,11 @@ def remove(table):
     return table
 
 
-
 def update(table):
 
     title_list = ["month", "day", "year", 'type', 'amount']
     id_ = ui.get_inputs(["ID:"], "")
     common.common_update(table, title_list, id_[0])
-
 
     return table
 
@@ -92,8 +81,6 @@ def which_year_max(table):
             max_key = k
     return k
 
-
-
     # your code
 
     pass
@@ -103,10 +90,10 @@ def which_year_max(table):
 # return the answer (number)
 def avg_amount(table, year):
 
-
     # your code
 
     pass
+
 
 def start_module():
     options = ["Show table",
@@ -117,28 +104,27 @@ def start_module():
                "Average profit in a given year"]
 
     table = data_manager.get_table_from_file(current_file_path + "/items.csv")
-
+    result_year_max = 0
 
     while True:
         ui.print_menu("Accounting menu", options, 'Back to main menu')
         option = ui.get_inputs(["Please enter a number: "], "")
 
-
-
         if option[0] == "1":
             show_table(table)
         elif option[0] == "2":
-            add(table)
+            table = add(table)
         elif option[0] == "3":
-            remove(table)
+            table = remove(table)
         elif option[0] == "4":
-            update(table)
+            table = update(table)
         elif option[0] == "5":
-            which_year_max(table)
+            result_year_max = which_year_max(table)
         elif option[0] == "6":
-            avg_amount(table,year)
+            avg_amount(table, year)
         elif option[0] == "0":
             break
         else:
             raise KeyError("There is no such option.")
             pass
+        data_manager.write_table_to_file(current_file_path + "/items.csv", table)
