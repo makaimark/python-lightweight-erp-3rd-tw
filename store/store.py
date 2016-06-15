@@ -48,8 +48,7 @@ def start_module():
         elif option[0] == "5":
             get_counts_by_manufacturers(table)
         elif option[0] == "6":
-            
-            get_average_by_manufacturer(table)
+            get_average_by_manufacturer(table, manufacturer)
         elif option[0] == "0":
             break
         else:
@@ -58,7 +57,8 @@ def start_module():
         data_manager.write_table_to_file(current_file_path + "/games.csv", table)
 
 # print the default table of records from the file
-#
+
+
 # @table: list of lists
 def show_table(table):
     title_list = ["ID", "Title", "Manufacturer", "Price", "In stock"]
@@ -112,13 +112,13 @@ def get_counts_by_manufacturers(table):
             data[table[i][2]] = 1
         else:
             data[table[i][2]] += 1
-    # ui.print_result(data, ' ')
-    print(data)  # works with print
+    return data
+    # print(data)  # works with print
 
 
 # the question: What is the average amount of games in stock of a given manufacturer?
 # return type: number
-def get_average_by_manufacturer(table):
+def get_average_by_manufacturer(table, manufacturer):
     counter = 0
     summa = 0
     for i in range(len(table)):
@@ -126,5 +126,4 @@ def get_average_by_manufacturer(table):
             summa += int(table[i][4])
             counter += 1
     result = summa/counter
-    # print_table(res, "Average by Manufacturer:")
-    print(result)
+    return result
