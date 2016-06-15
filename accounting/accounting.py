@@ -30,7 +30,7 @@ def show_table(table):
 def add(table):
     title_list = ["month", "day", "year", 'type', 'amount']
     table = common.common_add(table, title_list)
-
+    ui.print_table(table)
     return table
 
 
@@ -38,7 +38,7 @@ def remove(table):
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
     table = common.common_remove(table, id_[0])
-
+    ui.print_table(table)
     return table
 
 
@@ -47,7 +47,7 @@ def update(table):
     title_list = ["month", "day", "year", 'type', 'amount']
     id_ = ui.get_inputs(["ID:"], "")
     common.common_update(table, title_list, id_[0])
-
+    ui.print_table(table)
     return table
 
 
@@ -77,6 +77,7 @@ def which_year_max(table):
         if profit_year[k] > max_value:
             max_value = profit_year[k]
             max_key = k
+    ui.print_result(max_key)
     return int(max_key)
 
     pass
