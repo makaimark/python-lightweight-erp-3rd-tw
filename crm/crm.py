@@ -69,8 +69,17 @@ def update(table):
 # the question: What is the id of the customer with the longest name ?
 # return type: string (id) - if there are more than one longest name, return the first of descending alphabetical order
 def get_longest_name_id(table):
-
-    # title_list = ["ID"]
+    longest_names = [' ']
+    longest = 0
+    for line in table:
+        if len(line[1]) > longest:
+            longest_names = []
+            longest_names.append(line[0])
+            longest = len(line[1])
+        elif len(line[1]) == longest:
+            longest_names.append(line[0])
+            longest = len(line[1])
+    ui.print_result(longest_names, ' ')
 
     pass
 
