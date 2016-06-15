@@ -23,7 +23,7 @@ table = data_manager.get_table_from_file(current_file_path + "/items.csv")
 def show_table(table):
     title_list = ["ID", "month", "day", "year", 'type', 'amount']
     ui.print_table(table, title_list)
-
+    return table
     pass
 
 
