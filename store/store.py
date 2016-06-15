@@ -48,6 +48,7 @@ def start_module():
         elif option[0] == "5":
             get_counts_by_manufacturers(table)
         elif option[0] == "6":
+            
             get_average_by_manufacturer(table)
         elif option[0] == "0":
             break
@@ -111,8 +112,8 @@ def get_counts_by_manufacturers(table):
             data[table[i][2]] = 1
         else:
             data[table[i][2]] += 1
-    ui.print_result(data, ' ')
-    #print(data)  # works with print
+    # ui.print_result(data, ' ')
+    print(data)  # works with print
 
 
 # the question: What is the average amount of games in stock of a given manufacturer?
