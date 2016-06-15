@@ -39,8 +39,6 @@ def remove(table):
     id_ = ui.get_inputs(list_labels, "")
     table = common.common_remove(table, id_[0])
 
-    # your code
-
     return table
 
 
@@ -80,8 +78,6 @@ def which_year_max(table):
             max_value = profit_year[k]
             max_key = k
     return k
-
-    # your code
 
     pass
 
