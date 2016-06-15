@@ -113,7 +113,7 @@ def get_oldest_person(table):
         if int(line[2]) <= min(years):
             persons.append(line[1])
     ui.print_result(persons, title_list)
-    # print("\n".join(persons))
+    return persons
 
 
 
@@ -141,3 +141,4 @@ def get_persons_closest_to_average(table):
         if line[2] == b:
             result.append(line[0])
     ui.print_result(" ,".join(result), label)
+    return result
