@@ -24,19 +24,45 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # we need to reach the default and the special functions of this module from the module menu
 #
 def start_module():
+    options = ["1. Show items",
+    "2. Add items",
+    "3. Remove items",
+    "4. Update items",
+    "5. Get counts by manufacturers",
+    "6. Get average by manufacturer",
+    "0. Back to the main menu"]
 
-    # you code
+    table = data_manager.get_table_from_file(current_file_path + "/games.csv")
+    while True:
+        ui.print_menu("", options, "Error message")
+        option = ui.get_inputs(["Please enter a number: "], "")
 
-    pass
+        if option[0] == "1":
+            show_table(table)
+        elif option[0] == "2":
+            table = add(table)
+        elif option[0] == "3":
+            table = remove(table)
+        elif option[0] == "4":
+            update(table)
+        elif option[0] == "5":
+            get_counts_by_manufacturers(table)
+        elif option[0] == "6":
+            get_average_by_manufacturer(table, manufacturer)
+        elif option[0] == "0":
+            break
+        else:
+            raise KeyError("There is no such option.")
+            pass
 
 
 # print the default table of records from the file
 #
 # @table: list of lists
 def show_table(table):
-
+    title_list = ["ID", "Title", "Manufacturer", "Price", "In stock"]
+    ui.print_table(table, title_list)
     # your code
-
     pass
 
 
@@ -44,9 +70,8 @@ def show_table(table):
 #
 # @table: list of lists
 def add(table):
-
-    # your code
-
+    title_list = ["Title", "Manufacturer", "Price", "In stock:"]
+    table = common.common_add(table, title_list)
     return table
 
 
@@ -54,10 +79,10 @@ def add(table):
 #
 # @table: list of lists
 # @id_: string
-def remove(table, id_):
-
-    # your code
-
+def remove(table):
+    list_labels = ["ID"]
+    id_ = ui.get_inputs(list_labels, "")
+    table = common.common_remove(table, id_[0])
     return table
 
 
@@ -66,10 +91,10 @@ def remove(table, id_):
 #
 # @table: list of lists
 # @id_: string
-def update(table, id_):
-
-    # your code
-
+def update(table):
+    title_list = ["Title", "Manufacturer", "Price", "In stock:"]
+    common.common_update(table, title_list)
+    #data_manager.write_table_to_file(current_file_path + "/games.csv", table)
     return table
 
 
@@ -79,16 +104,26 @@ def update(table, id_):
 # the question: How many different kinds of game are available of each manufacturer?
 # return type: a dictionary with this structure: { [manufacturer] : [count] }
 def get_counts_by_manufacturers(table):
-
-    # your code
-
-    pass
+    data = {}
+    for i in range(len(table)):
+        stat = table[i][2] in data
+        if stat is not True:
+            data[table[i][2]] = 1
+        else:
+            data[table[i][2]] += 1
+        print_table()
+    #return data
 
 
 # the question: What is the average amount of games in stock of a given manufacturer?
 # return type: number
 def get_average_by_manufacturer(table, manufacturer):
-
-    # your code
-
-    pass
+    counter = 0
+    summa = 0
+    for i in range(len(table)):
+        if manufacturer == table[i][2]:
+            summa += int(table[i][4])
+            counter += 1
+    res = all_stock/counter
+    #print_table(res, "Average by Manufacturer:")
+    print(res)
