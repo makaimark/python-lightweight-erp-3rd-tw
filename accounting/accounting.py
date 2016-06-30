@@ -30,16 +30,14 @@ def show_table(table):
 def add(table):
     title_list = ["month", "day", "year", 'type', 'amount']
     table = common.common_add(table, title_list)
-    ui.print_table(table, title_list)
     return table
 
 
 def remove(table):
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
-    table = common.common_remove(table, id_[0])
-    ui.print_table(table, title_list)
-    return table
+    return_table = common.common_remove(table, id_[0])
+    return return_table
 
 
 def update(table):
@@ -47,7 +45,6 @@ def update(table):
     title_list = ["month", "day", "year", 'type', 'amount']
     id_ = ui.get_inputs(["ID:"], "")
     common.common_update(table, title_list, id_[0])
-    ui.print_table(table, title_list)
     return table
 
 
