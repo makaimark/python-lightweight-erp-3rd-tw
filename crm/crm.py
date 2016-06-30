@@ -33,10 +33,10 @@ def show_table(table):
 #
 # @table: list of lists
 def add(table):
+    return_table = []
     title_list = ["name", "e-mail", "subscribed"]
-    common.common_add(table, title_list)
-    ui.print_table(table, title_list)
-    return table
+    return_table = common.common_add(table, title_list)
+    return return_table
 
 
 # Remove the record having the id @id_ from the @list, than return @table
@@ -44,11 +44,11 @@ def add(table):
 # @table: list of lists
 # @id_: string
 def remove(table):
+    return_table = []
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
-    common.common_remove(table, id_[0])
-    ui.print_table(table, title_list)
-    return table
+    return_table = common.common_remove(table, id_[0])
+    return return_table
 
 
 # Update the record in @table having the id @id_ by asking the new data from the user,
@@ -57,11 +57,11 @@ def remove(table):
 # @table: list of lists
 # @id_: string
 def update(table):
+    return_table = []
     title_list = ["name", "e-mail", "subscribed"]
     id_ = ui.get_inputs(["ID:"], "")
-    common.common_update(table, title_list, id_[0])
-    ui.print_table(table, title_list)
-    return table
+    return_table = common.common_update(table, title_list, id_[0])
+    return return_table
 
 
 # special functions:
