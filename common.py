@@ -33,7 +33,6 @@ def generate_random(table):
 
 def common_add(table, title_list):
     new_add = []
-    new_id = ""
     new_id = generate_random(table)
     new_add = ui.get_inputs(title_list, "Give me an")
     new_add.insert(0, new_id)

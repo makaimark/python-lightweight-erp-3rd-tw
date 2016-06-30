@@ -14,7 +14,6 @@
 def print_table(table, title_list):
     max_len_list = 0
     max_len_element = [0 for i in range(len(title_list))]
-    counter = 0
     formatted_string = ""
     for i in table:
         counter = 0
