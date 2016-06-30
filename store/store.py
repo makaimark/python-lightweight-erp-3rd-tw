@@ -72,7 +72,6 @@ def show_table(table):
 def add(table):
     title_list = ["Title", "Manufacturer", "Price", "In stock:"]
     table = common.common_add(table, title_list)
-    ui.print_table(table, title_list)
     return table
 
 
@@ -84,7 +83,6 @@ def remove(table):
     list_labels = ["ID"]
     id_ = ui.get_inputs(list_labels, "")
     table = common.common_remove(table, id_[0])
-    ui.print_table(table, title_list)
     return table
 
 
@@ -97,7 +95,6 @@ def update(table):
     title_list = ["Title", "Manufacturer", "Price", "In stock:"]
     id_ = ui.get_inputs(["ID:"], "")
     common.common_update(table, title_list, id_[0])
-    ui.print_table(table, title_list)
     return table
 
 
